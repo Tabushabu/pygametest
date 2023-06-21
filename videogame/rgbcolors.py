@@ -1,3 +1,7 @@
+# Kyler Farnsworth
+# KFarnsworth1@csu.fullerton.edu
+# @Tabushabu
+
 """A list of RGB colors produced by X11's showrgb command. The color database
     is probably from an IRIX system circa 2005"""
 

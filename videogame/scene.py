@@ -1,3 +1,7 @@
+# Kyler Farnsworth
+# KFarnsworth1@csu.fullerton.edu
+# @Tabushabu
+
 """Scene objects for making games with PyGame."""
 
 import pygame
@@ -77,8 +81,11 @@ class PressAnyKeyToExitScene(Scene):
     def process_event(self, event):
         """Process game events."""
         # TODO: Have the super/parent class process the event first before
+        super().process_event(event)
         # processing the event yourself.
         # TOOD: If the event type is a keydown event, set self._is_valid to False.
+        if event.type == pygame.KEYDOWN:
+            self._is_valid = False
 
 
 class PolygonTitleScene(PressAnyKeyToExitScene):
@@ -90,18 +97,44 @@ class PolygonTitleScene(PressAnyKeyToExitScene):
         title,
         title_color=rgbcolors.ghostwhite,
         title_size=72,
-        background_color=rgbcolors.papaya_whip,
+        background_color=rgbcolors.purple4,
         soundtrack=None,
     ):
         """Initialize the scene."""
         # TODO: Have the super/parent class initialized
-        # TODO: Ask pygame for the default font at title_size size. Use the font to render the string title and assign this to an instance variable named self._title in the color title_color.
-        # TODO: Ask pygame for the default font at 18 point size. Use the font to render the string 'Press any key.' in the color black. Assign the rendered text to an instance variable named self._press_any_key.
+        super().__init__(screen, background_color, soundtrack)
+        pygame.font.init()
 
+        # TODO: Ask pygame for the default font at title_size size. Use the font to render the string title and assign this to an instance variable named self._title in the color title_color.
+        title_font = pygame.font.Font(None, title_size)
+        self._title = title_font.render(str(title), True, title_color)
+        
+       # TODO: Ask pygame for the default font at 18 point size. Use the font to render the string 'Press any key.' in the color black. Assign the rendered text to an instance variable named self._press_any_key.
+        press_any_key_font = pygame.font.Font(None, 18)
+        self._press_any_key = press_any_key_font.render('Press any key.', True, rgbcolors.black)
+ 
     def draw(self):
         """Draw the scene."""
-        # TODO: Have the super/parent class draw first before
-        # drawing yourself.
+        # TODO: Have the super/parent class draw first before drawing yourself.
+        super().draw()
+
         # TODO: Draw a 100 pixel by 100 pixel rectangle that has it's center located 100 pixels below the center of the window.
+        rect = pygame.Rect(
+            self._screen.get_width() // 2 - 50,
+            self._screen.get_height() // 2 + 100,
+            100,
+            100,
+        )
+        pygame.draw.rect(self._screen, rgbcolors.dodgerblue1, rect)
+        
         # TODO: Blit the title text to the center of the window.
+        title_rect = self._title.get_rect(center=self._screen.get_rect().center)
+        self._screen.blit(self._title, title_rect)
+
         # TODO: Blit the press any key message to the bottom of the window. The text should be centered horizontally and be 50 pixels above the bottom edge of the window.
+        press_any_key_rect = self._press_any_key.get_rect(
+            center=(self._screen.get_width() // 2, self._screen.get_height() - 50)
+        )
+        self._screen.blit(self._press_any_key, press_any_key_rect)
+
+        

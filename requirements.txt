@@ -1,0 +1,13 @@
+astroid==2.15.5
+dill==0.3.6
+isort==5.12.0
+lazy-object-proxy==1.9.0
+mccabe==0.7.0
+platformdirs==3.7.0
+pygame==2.4.0
+pylint==2.17.4
+tomli==2.0.1
+tomlkit==0.11.8
+typing_extensions==4.6.3
+-e git+https://github.com/cpsc-summer-2023/cpsc-386-04-scene-Tabushabu.git@af5545b525c8a8ff78a5d2a3c85934b022abaf9d#egg=videogame&subdirectory=videogame
+wrapt==1.15.0

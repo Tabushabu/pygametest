@@ -9,7 +9,6 @@ import warnings
 
 import pygame
 
-import rgbcolors
 from scene import PolygonTitleScene
 
 
@@ -68,7 +67,6 @@ class MyVideoGame(VideoGame):
 
     def __init__(self):
         """Init the Pygame demo."""
-        # TODO: initialize the window and set the title to "Hello"
         super().__init__()
 
         pygame.init()
@@ -76,23 +74,20 @@ class MyVideoGame(VideoGame):
         self._title = "Hello"
         pygame.display.set_caption("Hello")
 
-        # TODO: Define an instance variable named self._main_dir which is the absolute path to the parent directory of this file, __file__.
-        # TODO: Define an instance variable named self._data_dir which is self._main_dir joined with "data".
-        # TODO: build the game's scene graph
         self._main_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
-        self._data_dir = os.path.join(self._main_dir, "data")
+        self._data_dir = os.path.join(self._main_dir, "videogame", "data")
 
         self.build_scene_graph()
-        
+
         print(f"Our main directory is {self._main_dir}")
         print(f"Our data directory is {self._data_dir}")
 
     def build_scene_graph(self):
         """Build scene graph for the game demo."""
-        # TODO: implement how the scene graph for this game is built.
-        self._scene_graph = [PolygonTitleScene(self._screen, self._title)]
-
-
+        soundtrack_path = os.path.join(self._data_dir, "Tax_Evasion.mp3")
+        self._scene_graph = [
+            PolygonTitleScene(self._screen, self._title, soundtrack=soundtrack_path)
+        ]
 
     def run(self):
         """Run the game; the main game loop."""

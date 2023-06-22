@@ -11,7 +11,6 @@ import sys
 import game
 
 if __name__ == "__main__":
-    # TODO: Prepare and run the game
     game = game.MyVideoGame()
     game.run()
     sys.exit(0)
